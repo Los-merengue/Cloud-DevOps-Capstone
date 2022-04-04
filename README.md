@@ -1,4 +1,3 @@
-[![CircleCI](https://circleci.com/gh/Alex-CG/udacity-devops-eng-capstone/tree/master.svg?style=svg)](https://circleci.com/gh/Alex-CG/udacity-devops-eng-capstone/tree/master)
 
 # udacity-devops-eng-capstone
 Capstone - Project 5
@@ -18,6 +17,5 @@ The deployment pipeline will include the following jobs:
 
 To run the pipeline automatically just commit to the master branch of the repo.
 
- * GitHub repo link  : https://github.com/Alex-CG/udacity-devops-eng-capstone
- * CircleCI Pipeline : https://app.circleci.com/pipelines/github/Alex-CG/udacity-devops-eng-capstone?filter=all
  
+
