@@ -1,6 +1,6 @@
 # Step 1:
 # This is your Docker ID/path
-dockerpath=oketcbb/api
+dockerpath=galactican/api
 
 # Step 2:
 # Run the Docker Hub container with kubernetes
