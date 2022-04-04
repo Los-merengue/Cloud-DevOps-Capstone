@@ -1,29 +1,22 @@
-setup:
-	# Create python virtualenv & source it
-	# source ~/.capstone/bin/activate
-	python3 -m venv ~/.capstone
+# Step 1:
+# This is your Docker ID/path
+dockerpath=oketcbb/api
 
-install:
-	# This should be run from inside a virtualenv
-	pip3 install --no-cache-dir --upgrade pip &&\
-		pip3 install --no-cache-dir -r requirements.txt
-	wget -O ./hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
-        chmod +x ./hadolint
-		
-test:
-	# Additional, optional, tests could go here
-	#python -m pytest -vv --cov=myrepolib tests/*.py
-	#python -m pytest --nbval notebook.ipynb
+# Step 2:
+# Run the Docker Hub container with kubernetes
+kubectl run api-pod --image=$dockerpath --port=80 --labels app=api-pod
 
+# Step 3:
+#  Listing deployments
+kubectl get deployments -o wide
 
-validate-circleci:
-	# See https://circleci.com/docs/2.0/local-cli/#processing-a-config
-	circleci config process .circleci/config.yml
+# Step 4:
+# Listing services
+kubectl get services -o wide
 
-lint:
-	# docker run --rm -i hadolint/hadolint < Dockerfile
-	./hadolint Dockerfile
-	pylint --disable=R,C,W1203,W1202, flask_app/app.py
+# Step 5:
+kubectl get pods -o wide
 
-
-all: install lint test
+# Step 6:
+# Forward the container port to a host
+kubectl port-forward api-pod 8000:80
