@@ -43,4 +43,4 @@ workflows:
   default:
     jobs:
       - lint-app
-      - build-push-image
+      - build-push-images
