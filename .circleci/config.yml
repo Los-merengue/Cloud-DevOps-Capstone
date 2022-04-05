@@ -1,5 +1,10 @@
 version: 2.1
 
+orbs:
+  docker: circleci/docker@2.0.1
+  kubernetes: circleci/kubernetes@1.3.0
+  aws-eks: circleci/aws-eks@2.1.1
+
 jobs:
   lint-app:
     docker:
@@ -33,10 +38,6 @@ jobs:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
 
-  
-orbs:
-  aws-eks: circleci/aws-eks@1.0.3
-  kubernetes: circleci/kubernetes@1.0
 
 workflows:
   default:
