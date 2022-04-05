@@ -78,6 +78,8 @@ workflows:
       - build-push-images
       - create-service:
           cluster-name: eks-demo-deployment
+          requires:
+            - build-push-images
       - create-deployment:
           cluster-name: eks-demo-deployment
           requires:
