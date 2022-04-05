@@ -1,0 +1,108 @@
+version: 2.1
+orbs:
+  docker: circleci/docker@2.0.1
+  kubernetes: circleci/kubernetes@1.3.0
+  aws-eks: circleci/aws-eks@2.1.1
+
+jobs:
+
+  lint-app:
+    docker:
+      - image: python:3.7.3-stretch
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: |
+            make install
+      - run:
+          name: run lint
+          command: |
+            make lint
+
+  build-push-images:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+          image: galactican/my-capstone-site
+          tag: "1.2"
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: galactican/my-capstone-site
+          tag: "1.2"
+      - run:
+          command: |
+            echo "Digest is: $(</tmp/digest.txt)"
+
+  test-cluster:
+    executor: aws-eks/python3
+    parameters:
+      cluster-name:
+        description: |
+          Name of the EKS cluster
+        type: string
+    steps:
+      - kubernetes/install
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+      - run:
+          name: Kube cluster
+          command: |
+            kubectl get services
+
+  run-deployment:
+    executor: aws-eks/python3
+    parameters:
+      cluster-name:
+        description: |
+          Name of the EKS cluster
+        type: string
+    steps:
+      - checkout
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+          install-kubectl: true
+      - kubernetes/create-or-update-resource:
+          get-rollout-status: true
+          resource-file-path: deployment.yml
+          resource-name: deployment/capstone-site
+
+  test-deployment:
+    executor: aws-eks/python3
+    parameters:
+      cluster-name:
+        description: |
+          Name of the EKS cluster
+        type: string
+    steps:
+      - kubernetes/install
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+      - run:
+          name: Kube cluster
+          command: |
+            kubectl get svc
+            kubectl get nodes
+            kubectl get deployment
+
+  
+workflows:
+  default:
+    jobs:
+      - lint-app
+      - build-push-images:
+          requires: [lint-app]
+      - test-cluster:
+          cluster-name: FirstCluster
+          requires: [build-push-images]
+      - run-deployment:
+          cluster-name: eks-capstone-project
+          requires: [test-cluster]
+      - test-deployment:
+          cluster-name: eks-capstone-project
+          requires: [run-deployment]
+
