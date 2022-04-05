@@ -105,4 +105,3 @@ workflows:
       - test-deployment:
           cluster-name: eks-capstone-project
           requires: [run-deployment]
-  
