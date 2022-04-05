@@ -39,7 +39,7 @@ orbs:
   kubernetes: circleci/kubernetes@1.0
 
 workflows:
-  deployment:
+  default:
     jobs:
       - lint-app
       - build-push-image
