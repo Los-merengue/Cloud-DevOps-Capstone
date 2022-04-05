@@ -97,7 +97,7 @@ workflows:
       - build-push-images:
           requires: [lint-app]
       - test-cluster:
-          cluster-name: eks-capstone-project
+          cluster-name: FirstCluster
           requires: [build-push-images]
       - run-deployment:
           cluster-name: eks-capstone-project
