@@ -17,4 +17,3 @@ The deployment pipeline will include the following jobs:
 
 To run the pipeline automatically just commit to the master branch of the repo.
 
-#This would be a good readme file
