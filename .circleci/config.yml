@@ -83,6 +83,6 @@ workflows:
       - create-service:
           cluster-name: eks-demo-deployment
           requires:
-            - create-service
+            - create-deployment
       
       
