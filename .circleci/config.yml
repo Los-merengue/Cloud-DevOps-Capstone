@@ -39,7 +39,9 @@ jobs:
             echo "Digest is: $(</tmp/digest.txt)"
 
   create-deployment:
-    executor: aws-eks/python3
+    docker:
+      - image: 'cimg/python:3.10'
+    #executor: aws-eks/python3
     parameters:
       cluster-name:
         description: |
@@ -55,7 +57,9 @@ jobs:
           resource-file-path: deployment.json
           resource-name: deployment/blue
   create-service:
-    executor: aws-eks/python3
+    docker:
+      - image: 'cimg/python:3.10'
+    #executor: aws-eks/python3
     parameters:
       cluster-name:
         description: |
