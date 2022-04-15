@@ -38,41 +38,6 @@ jobs:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
 
-  create-deployment:
-    docker:
-      - image: 'cimg/python:3.10'
-    #executor: aws-eks/python3
-    parameters:
-      cluster-name:
-        description: |
-          Name of the EKS cluster
-        type: string
-    steps:
-      - checkout
-      - aws-eks/update-kubeconfig-with-authenticator:
-          cluster-name: << parameters.cluster-name >>
-          install-kubectl: true
-      - kubernetes/create-or-update-resource:
-          get-rollout-status: true
-          resource-file-path: deployment.json
-          resource-name: deployment/blue
-  create-service:
-    docker:
-      - image: 'cimg/python:3.10'
-    parameters:
-      cluster-name:
-        description: |
-          Name of the EKS cluster
-        type: string
-    steps:
-      - checkout
-      - aws-eks/update-kubeconfig-with-authenticator:
-          cluster-name: << parameters.cluster-name >>
-          install-kubectl: true
-      - kubernetes/create-or-update-resource:
-          resource-file-path: service.json
-          resource-name: service/bluegreenlb
-
   create-small-cluster:
     docker:
       - image: 'cimg/python:3.10'
@@ -93,10 +58,46 @@ jobs:
           nodes-max: 4
           #skip-kubectl-install: false
           #verbose: 3
-          
-          
+  
+  create-service:
+    docker:
+      - image: 'cimg/python:3.10'
+    parameters:
+      cluster-name:
+        description: |
+          Name of the EKS cluster
+        type: string
+    steps:
+      - checkout
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+          install-kubectl: true
+      - kubernetes/create-or-update-resource:
+          resource-file-path: service.json
+          resource-name: service/bluegreenlb
 
+  create-deployment:
+    docker:
+      - image: 'cimg/python:3.10'
+    #executor: aws-eks/python3
+    parameters:
+      cluster-name:
+        description: |
+          Name of the EKS cluster
+        type: string
+    steps:
+      - checkout
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+          install-kubectl: true
+      - kubernetes/create-or-update-resource:
+          get-rollout-status: true
+          resource-file-path: deployment.json
+          resource-name: deployment/blue
+  
 
+  
+                  
 workflows:
   default:
     jobs:
