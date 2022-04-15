@@ -71,7 +71,8 @@ jobs:
           resource-name: service/bluegreenlb
 
   create-small-cluster:
-    executor: python3
+    docker:
+      - image: 'cimg/python:3.10'
     parameters:
       cluster-name:
         description: |
