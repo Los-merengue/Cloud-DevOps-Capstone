@@ -81,6 +81,7 @@ jobs:
       - checkout
       - aws-eks/install-aws-iam-authenticator:
           release-tag: ''
+          install-eksctl: true
       - aws-eks/create-cluster:
           cluster-name: << parameters.cluster-name >>
           skip-kubectl-install: false
