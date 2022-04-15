@@ -98,8 +98,7 @@ workflows:
       - build-push-images
       - create-small-cluster:
           cluster-name: eks-demo-deployment
-          requires:
-            - build-push-images,lint-app
+          requires: [build-push-images,lint-app]
       - create-service:
           cluster-name: eks-demo-deployment
           requires:
