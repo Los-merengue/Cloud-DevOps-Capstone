@@ -71,7 +71,7 @@ jobs:
           resource-name: service/bluegreenlb
 
   create-small-cluster:
-    executor: aws-eks/python3
+    executor: python3
     parameters:
       cluster-name:
         description: |
