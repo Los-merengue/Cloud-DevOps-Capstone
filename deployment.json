@@ -24,7 +24,7 @@
              "containers":[
                 {
                    "name":"blue",
-                   "image":"galactican/my-capstone-site",
+                   "image":"galactican/my-capstone-site:1.2",
                    "ports":[
                       {
                          "name":"http-server",

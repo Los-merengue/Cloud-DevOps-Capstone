@@ -114,6 +114,13 @@ workflows:
           cluster-name: eks-deployment
           requires:
             - create-service
+      - aws-eks/update-container-image:
+          cluster-name: eks-deployment
+          container-image-updates: 'blue=galactican/my-capstone-site:1.2'
+          record: true
+          requires:
+            - create-deployment
+          resource-name: deployment/blue
       
       
       
