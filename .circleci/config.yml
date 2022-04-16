@@ -120,18 +120,18 @@ workflows:
       - lint-app
       - build-push-images
       - create-small-cluster:
-          cluster-name: eks-deployment
+          cluster-name: eks-green-deployment
           requires: [build-push-images,lint-app]
       - create-service:
-          cluster-name: eks-deployment
+          cluster-name: eks-green-deployment
           requires:
             - create-small-cluster
       - create-deployment:
-          cluster-name: eks-deployment
+          cluster-name: eks-green-deployment
           requires:
             - create-service
       - update-container-image:
-          cluster-name: eks-deployment
+          cluster-name: eks-green-deployment
           requires:
             - create-deployment
       
