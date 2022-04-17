@@ -1,9 +1,9 @@
 
 # udacity-devops-eng-capstone
-Capstone - Project 5
+## Capstone - Project 5
 
 [![CircleCI](https://circleci.com/gh/Los-merengue/Cloud-DevOps-Capstone/tree/main.svg?style=svg)](https://circleci.com/gh/Los-merengue/Cloud-DevOps-Capstone/tree/main)
-
+This project is part of the Udacity Cloud-DevOps Program that is 
 How is the project setup:
 
  * Tool used       : CircleCI
