@@ -4,6 +4,7 @@
 
 [![CircleCI](https://circleci.com/gh/Los-merengue/Cloud-DevOps-Capstone/tree/main.svg?style=svg)](https://circleci.com/gh/Los-merengue/Cloud-DevOps-Capstone/tree/main)
 This project is part of the Udacity Cloud-DevOps Program. It implements the array of skill that has been obtained during the course of the program which involves Blue-Green CI/CD Deployment, AWS orbs, AWS Elastic Cluster Service, CircleCI Pipeline, YAML and json script.
+
 How is the project setup:
 
  * Tool used       : CircleCI
