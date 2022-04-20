@@ -24,7 +24,3 @@ To run the pipeline automatically just commit to the master branch of the repo.
 https://app.circleci.com/pipelines/github/Los-merengue/Cloud-DevOps-Capstone?filter=all
 
 https://github.com/Los-merengue/Cloud-DevOps-Capstone
-
-# Contribution
-
-For contribution to this project, fork the repo and create a PR when contribution is completed
