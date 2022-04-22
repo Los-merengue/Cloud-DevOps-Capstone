@@ -20,7 +20,7 @@ The deployment pipeline will include the following jobs:
    deployed alongside.
 4. Create & run-deployment - Run the deployment with the updated image
 
-# Running the Peipeline
+## Running the Peipeline
 To run the pipeline automatically just commit to the master branch of the repo.
 
 https://app.circleci.com/pipelines/github/Los-merengue/Cloud-DevOps-Capstone?filter=all
