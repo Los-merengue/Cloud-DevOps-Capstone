@@ -1,5 +1,5 @@
 
-# udacity-devops-eng-capstone
+# Devops-Engineering-capstone
 ## Capstone - Project 5
 
 [![CircleCI](https://circleci.com/gh/Los-merengue/Cloud-DevOps-Capstone/tree/main.svg?style=svg)](https://circleci.com/gh/Los-merengue/Cloud-DevOps-Capstone/tree/main)
